@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Real-Serious-Games/ServerMonitor#readme",
   "dependencies": {
-    "cron": "^1.0.9"
+    "cron": "^1.0.9",
+    "request-promise": "^0.4.2"
   }
 }
