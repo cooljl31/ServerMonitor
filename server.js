@@ -1,20 +1,21 @@
 
 var request = require('request-promise');
 var mailer = require('./mailer');
+var config = require('./config');
 
-var hostsToCheck = [
-	'http://www.google.com',
-];
+mailer.notify({
+	subject: config.name + " online at " + new Date().toString(),
+	text: "Host " + hostUrl + " is not responding, returned status code: " + result.statusCode,
+});
 
-
-var cronJob = require('cron').CronJob;
-var job = new cronJob({
+var CronJob = require('cron').CronJob;
+new CronJob({
     cronTime: '*/5 * * * *', // Run every 5 minutes.
     onTick: function() { 
-    	console.log('Running!');
+    	console.log('Frequent server check!');
     	console.log(new Date());
 
-    	hostsToCheck.forEach(function (hostUrl) {
+    	config.hostsToCheck.forEach(function (hostUrl) {
     		try {
 	    		request({
 	    				method: 'GET',
@@ -57,3 +58,4 @@ var job = new cronJob({
     }, 
     start: true,
 });
+
