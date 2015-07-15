@@ -1,5 +1,5 @@
 #!/bin/bash
-# Note: if you update this file and deploy, this script will be invoke on the serer.
+# Note: if you update this file and deploy, this script will be invoke on the server.
 
 D=$(date +"%m_%d_%Y")
 LOG=./logs/restart_$D.log
