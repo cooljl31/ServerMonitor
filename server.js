@@ -41,7 +41,7 @@ new CronJob({
 
     					mailer.notify({
 							subject: "Problem with host",
-							text: "An error occured contacting host " + hostUrl,
+							text: "An error occurred contacting host " + hostUrl,
     					});
 	    			});
 	    	}
@@ -51,7 +51,7 @@ new CronJob({
 
 				mailer.notify({
 					subject: "Problem with host",
-					text: "An exception occured contacting host " + hostUrl,
+					text: "An exception occurred contacting host " + hostUrl,
 				});
 	    	}
     	});
