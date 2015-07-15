@@ -4,8 +4,8 @@ var mailer = require('./mailer');
 var config = require('./config');
 
 mailer.notify({
-	subject: config.name + " online at " + new Date().toString(),
-	text: "Host " + hostUrl + " is not responding, returned status code: " + result.statusCode,
+	subject: config.name + " has restarted.",
+	text: config.name + " online at " + new Date().toString(),
 });
 
 var CronJob = require('cron').CronJob;
