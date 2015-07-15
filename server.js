@@ -1,5 +1,6 @@
 
 var request = require('request-promise');
+var mailer = require('./mailer');
 
 var hostsToCheck = [
 	'http://www.google.com',
@@ -26,16 +27,31 @@ var job = new cronJob({
 	    				}
 	    				else {
 	    					console.error('Problem with ' + hostUrl + ', returned status code: ' + result.statusCode);	
+
+	    					mailer.notify({
+    							subject: "Problem with host",
+    							text: "Host " + hostUrl + " is not responding, returned status code: " + result.statusCode,
+	    					});
 	    				}
 	    			})
 	    			.catch(function (err) {
 	    				console.error('An error occurred checking ' + hostUrl);
 	    				console.error(err.stack);
+
+    					mailer.notify({
+							subject: "Problem with host",
+							text: "An error occured contacting host " + hostUrl,
+    					});
 	    			});
 	    	}
 	    	catch (ex) {
 				console.error('An exception occurred checking ' + hostUrl);
 				console.error(ex.stack);
+
+				mailer.notify({
+					subject: "Problem with host",
+					text: "An exception occured contacting host " + hostUrl,
+				});
 	    	}
     	});
     }, 
