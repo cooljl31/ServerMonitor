@@ -21,6 +21,7 @@ new CronJob({
 	    				method: 'GET',
 	    				uri: hostUrl,
 	    				resolveWithFullResponse: true,
+	    				rejectUnauthorized: false, //todo: Want to be able to handle proper certificates as well.
 	    			})
 	    			.then(function (result) {
 	    				if (result.statusCode === 200) {
@@ -30,8 +31,8 @@ new CronJob({
 	    					console.error('Problem with ' + hostUrl + ', returned status code: ' + result.statusCode);	
 
 	    					mailer.notify({
-    							subject: "Problem with host",
-    							text: "Host " + hostUrl + " is not responding, returned status code: " + result.statusCode,
+    							subject: config.name + ": Problem with host",
+    							text: config.name + ": Host " + hostUrl + " is not responding, returned status code: " + result.statusCode,
 	    					});
 	    				}
 	    			})
@@ -40,8 +41,8 @@ new CronJob({
 	    				console.error(err.stack);
 
     					mailer.notify({
-							subject: "Problem with host",
-							text: "An error occurred contacting host " + hostUrl,
+							subject: config.name + ": Problem with host",
+							text: config.name + ": An error occurred contacting host " + hostUrl,
     					});
 	    			});
 	    	}
@@ -50,8 +51,8 @@ new CronJob({
 				console.error(ex.stack);
 
 				mailer.notify({
-					subject: "Problem with host",
-					text: "An exception occurred contacting host " + hostUrl,
+					subject: config.name + ": Problem with host",
+					text: config.name + ": An exception occurred contacting host " + hostUrl,
 				});
 	    	}
     	});
