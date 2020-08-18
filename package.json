@@ -20,6 +20,6 @@
     "cron": "^1.0.9",
     "nodemailer": "^1.4.0",
     "nodemailer-smtp-transport": "^1.0.3",
-    "request-promise": "^0.4.2"
+    "request-promise": "^2.0.1"
   }
 }
